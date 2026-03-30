@@ -290,3 +290,29 @@ header {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@media (max-width: 600px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .header-filters {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  
+  .search-container {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .view-controls {
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .view-controls select {
+    flex: 1;
+    margin-left: 0.5rem;
+  }
+}

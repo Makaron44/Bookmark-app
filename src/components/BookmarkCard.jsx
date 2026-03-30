@@ -21,17 +21,17 @@ export default function BookmarkCard({ bookmark, onDelete, onEdit, onTagClick, v
             </div>
           )}
           <div style={{ flex: 1, minWidth: 0 }}>
-            <h3 style={{ fontSize: '1.05rem', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <h3 style={{ fontSize: '1.05rem', margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', wordBreak: 'break-word' }}>
               <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-primary)' }}>
                 {title || url}
               </a>
             </h3>
             {note && (
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: '0.2rem 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: '0.2rem 0', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                 {note}
               </p>
             )}
-            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem', overflowX: 'auto', paddingBottom: '0.2rem' }} className="hide-scroll">
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
                {tags && tags.map((tag, idx) => (
                  <span key={idx} className="tag clickable" onClick={() => onTagClick(tag)} style={{ padding: '0.1rem 0.5rem', fontSize: '0.7rem' }}>
                    #{tag}
@@ -41,7 +41,7 @@ export default function BookmarkCard({ bookmark, onDelete, onEdit, onTagClick, v
           </div>
         </div>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginLeft: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', marginLeft: '0.5rem', flexShrink: 0 }}>
           <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem', marginRight: '0.5rem', whiteSpace: 'nowrap' }} className="mobile-hidden">
             {formatDate(createdAt)}
           </div>

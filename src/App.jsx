@@ -115,75 +115,78 @@ export default function App() {
   return (
     <div className="app-container">
       <header>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <h1 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-color)', margin: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <h1 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-color)', margin: 0, fontSize: '1.5rem' }}>
             🔖 Markd
           </h1>
           
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '0.25rem' }}>
             <input type="file" accept=".json" style={{ display: 'none' }} ref={fileInputRef} onChange={handleImportJSON} />
-            <button className="btn-icon" onClick={() => fileInputRef.current.click()} title="Importuj (JSON)">
+            <button className="btn-icon mobile-hidden" onClick={() => fileInputRef.current.click()} title="Importuj (JSON)">
               <Upload size={18} />
             </button>
-            <button className="btn-icon" onClick={handleExportJSON} title="Eksportuj (JSON)">
+            <button className="btn-icon mobile-hidden" onClick={handleExportJSON} title="Eksportuj (JSON)">
               <Download size={18} />
             </button>
             <button 
               className="btn-primary"
+              style={{ marginLeft: '0.5rem' }}
               onClick={() => {
                 setEditingBookmark(null);
                 setIsModalOpen(true);
               }}
             >
               <Plus size={18} />
-              <span className="mobile-hidden">Dodaj</span>
+              <span className="mobile-hidden">Dodaj zakładkę</span>
             </button>
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <div className="search-container">
+        <div className="header-filters" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="search-container" style={{ flex: '1 1 auto', minWidth: '200px' }}>
             <Search size={18} className="search-icon" />
             <input 
               type="text" 
               className="search-input shadow-sm"
-              placeholder="Szukaj w swoich zakładkach..." 
+              placeholder="Szukaj zakładki..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
-          <div style={{ display: 'flex', gap: '0.5rem', background: 'var(--bg-color-light)', padding: '0.25rem', borderRadius: '100px', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <button 
-              className={`btn-icon ${viewMode === 'grid' ? 'active' : ''}`} 
-              style={{ background: viewMode === 'grid' ? 'var(--accent-color)' : 'transparent', color: viewMode === 'grid' ? '#fff' : 'inherit' }}
-              onClick={() => setViewMode('grid')}
-              title="Widok Siatki"
-            >
-              <LayoutGrid size={16} />
-            </button>
-            <button 
-              className={`btn-icon ${viewMode === 'list' ? 'active' : ''}`} 
-              style={{ background: viewMode === 'list' ? 'var(--accent-color)' : 'transparent', color: viewMode === 'list' ? '#fff' : 'inherit' }}
-              onClick={() => setViewMode('list')}
-              title="Widok Listy"
-            >
-              <List size={16} />
-            </button>
-          </div>
+          <div className="view-controls" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '0.25rem', background: 'var(--bg-color-light)', padding: '0.25rem', borderRadius: '100px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <button 
+                className={`btn-icon ${viewMode === 'grid' ? 'active' : ''}`} 
+                style={{ background: viewMode === 'grid' ? 'var(--accent-color)' : 'transparent', color: viewMode === 'grid' ? '#fff' : 'inherit' }}
+                onClick={() => setViewMode('grid')}
+                title="Widok Siatki"
+              >
+                <LayoutGrid size={16} />
+              </button>
+              <button 
+                className={`btn-icon ${viewMode === 'list' ? 'active' : ''}`} 
+                style={{ background: viewMode === 'list' ? 'var(--accent-color)' : 'transparent', color: viewMode === 'list' ? '#fff' : 'inherit' }}
+                onClick={() => setViewMode('list')}
+                title="Widok Listy"
+              >
+                <List size={16} />
+              </button>
+            </div>
 
-          <select 
-            value={sortBy} 
-            onChange={e => setSortBy(e.target.value)}
-            style={{ 
-              background: 'var(--bg-color-light)', color: 'var(--text-primary)', border: '1px solid rgba(255,255,255,0.1)', 
-              borderRadius: 'var(--radius-sm)', padding: '0.5rem', outline: 'none' 
-            }}
-          >
-            <option value="newest">Najnowsze</option>
-            <option value="oldest">Najstarsze</option>
-            <option value="alpha">A-Z</option>
-          </select>
+            <select 
+              value={sortBy} 
+              onChange={e => setSortBy(e.target.value)}
+              style={{ 
+                background: 'var(--bg-color-light)', color: 'var(--text-primary)', border: '1px solid rgba(255,255,255,0.1)', 
+                borderRadius: 'var(--radius-sm)', padding: '0.5rem', outline: 'none', height: '100%', minHeight: '38px', fontSize: '0.85rem'
+              }}
+            >
+              <option value="newest">Najnowsze</option>
+              <option value="oldest">Najstarsze</option>
+              <option value="alpha">A-Z</option>
+            </select>
+          </div>
         </div>
 
         {allTags.length > 0 && (

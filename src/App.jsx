@@ -122,10 +122,10 @@ export default function App() {
           
           <div style={{ display: 'flex', gap: '0.25rem' }}>
             <input type="file" accept=".json" style={{ display: 'none' }} ref={fileInputRef} onChange={handleImportJSON} />
-            <button className="btn-icon mobile-hidden" onClick={() => fileInputRef.current.click()} title="Importuj (JSON)">
+            <button className="btn-icon" onClick={() => fileInputRef.current.click()} title="Importuj (JSON)">
               <Upload size={18} />
             </button>
-            <button className="btn-icon mobile-hidden" onClick={handleExportJSON} title="Eksportuj (JSON)">
+            <button className="btn-icon" onClick={handleExportJSON} title="Eksportuj (JSON)">
               <Download size={18} />
             </button>
             <button 
